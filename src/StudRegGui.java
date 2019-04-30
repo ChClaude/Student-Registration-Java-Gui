@@ -193,10 +193,6 @@ public class StudRegGui extends JFrame {
 
     }
 
-    public static DefaultListModel<Graduate> getGraduatesDefaultList() {
-        return graduatesDefaultList;
-    }
-
     private JPanel createPanel(String legend, JComponent jComponent1, JComponent jComponent2, String strLabel1, String strLabel2) {
         JPanel mainPanel = new JPanel(new GridLayout(1, 2, 3, 1));
 

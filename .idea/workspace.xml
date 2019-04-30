@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d215676b-37fa-4749-bc02-42f8cd335727" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Student_Registration/StudRegGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Student_Registration/StudRegGui.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StudRegGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudRegGui.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/StudRegGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="185" column="44" lean-forward="true" selection-start-line="185" selection-start-column="44" selection-end-line="185" selection-end-column="44" />
+            <state relative-caret-position="89">
+              <caret line="193" column="4" lean-forward="true" selection-start-line="193" selection-start-column="4" selection-end-line="193" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -177,16 +175,15 @@
       <workItem from="1556128342445" duration="7683000" />
       <workItem from="1556180455641" duration="3883000" />
       <workItem from="1556215275766" duration="632000" />
-      <workItem from="1556626442385" duration="12634000" />
+      <workItem from="1556626442385" duration="12972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37547000" />
+    <option name="totallyTimeSpent" value="37885000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.25642964" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -203,7 +200,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32872504" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32872504" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32718894" />
@@ -292,8 +289,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StudRegGui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="185" column="44" lean-forward="true" selection-start-line="185" selection-start-column="44" selection-end-line="185" selection-end-column="44" />
+        <state relative-caret-position="89">
+          <caret line="193" column="4" lean-forward="true" selection-start-line="193" selection-start-column="4" selection-end-line="193" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
