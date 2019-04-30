@@ -27,7 +27,7 @@ in and the fees to be paid for the academic year.
 * It displays the stored students in a JList
 
 ## Status of Project
-I am still thinking to add some more functionalities such as deleting students, changing details and
+I am still thinking of adding some more functionalities such as deleting students, changing details and
 checking user input before adding to the list.
 
 ## Author
