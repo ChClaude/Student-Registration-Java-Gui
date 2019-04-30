@@ -8,11 +8,15 @@ import java.util.Collections;
 /**
  * StudentRegistrationFrame.java
  * This is a class that builds the frame of the main app
+ *
+ * @author Claude DE-TCHAMBILA
  */
 public class StudRegGui extends JFrame {
 
-    private static ArrayList<Graduate> graduates;
+    private static DefaultListModel<Graduate> graduatesDefaultList;
+    private static int numberOfStudent = 0;
     private final int TEXTFIELD_LENGTH = 13;
+    JScrollPane scrollPane;
     private JButton addBtn;
     private JButton sortBtn;
     private JButton displayBtn;
@@ -22,11 +26,75 @@ public class StudRegGui extends JFrame {
     private JTextField feeTextField;
     private JComboBox<String> qualificationsComboBox;
     private String[] qualificationsArray = {"NDIPIT", "NCINT", "NDINFT", "None"};
+    private JList graduatesList;
 
     public StudRegGui() {
         super("STUDENT REGISTRATION");
 
-        setLayout(new GridLayout(3, 1, 1, 3));
+        setLayout(new GridLayout(4, 1, 1, 3));
+
+        Container container = getContentPane();
+
+
+        // creating the menu bar
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        // JMenu object
+        JMenu menu = new JMenu("Options");
+
+        // JMenuItem objects
+        JMenuItem addItem = new JMenuItem("Add");
+        JMenuItem sortItem = new JMenuItem("Sort");
+        JMenuItem displayItem = new JMenuItem("Display");
+
+        // menu item listener
+        addItem.addActionListener(
+                (event) -> {
+                    String id = idTextField.getText();
+                    String surname = surnameTextField.getText();
+                    String qualification = qualificationsComboBox.getSelectedItem().toString();
+                    double fee = Double.parseDouble(feeTextField.getText());
+
+                    graduatesDefaultList.add(numberOfStudent++, new Graduate(id, surname, 0, qualification, fee)); // adding graduate student to the list
+
+                    // empty the fields
+                    idTextField.setText("");
+                    surnameTextField.setText("");
+                    qualificationsComboBox.setSelectedIndex(0);
+                    feeTextField.setText("");
+                }
+        );
+
+        sortItem.addActionListener(e -> {
+            ArrayList<Graduate> arrayList = new ArrayList<>();
+
+            for (int i = 0; i < graduatesDefaultList.getSize(); i++) {
+                arrayList.add(graduatesDefaultList.getElementAt(i));
+            }
+
+            Collections.sort(arrayList);
+
+            graduatesDefaultList.clear();
+
+            for (int i = 0; i < arrayList.size(); i++) {
+                graduatesDefaultList.add(i, arrayList.get(i));
+            }
+        });
+
+
+        displayItem.addActionListener((e -> {
+            scrollPane.setVisible(true);
+        }));
+
+        // Adding items to menu
+        menu.add(addItem);
+        menu.add(sortItem);
+        menu.add(displayItem);
+
+        // adding menu to the menuBar
+        menuBar.add(menu);
+
 
         // initializing textFields
         idTextField = new JTextField(TEXTFIELD_LENGTH);
@@ -34,8 +102,9 @@ public class StudRegGui extends JFrame {
         qualificationTextField = new JTextField(TEXTFIELD_LENGTH);
         feeTextField = new JTextField(TEXTFIELD_LENGTH);
 
-        // creating the graduates list
-        graduates = new ArrayList<>();
+        // creating the graduatesDefaultList list
+        graduatesDefaultList = new DefaultListModel<>();
+
 
         // creating the comboBox for qualifications
         qualificationsComboBox = new JComboBox<>(qualificationsArray);
@@ -45,16 +114,12 @@ public class StudRegGui extends JFrame {
         qualificationsComboBox.addItemListener(i -> {
             if (i.getStateChange() == ItemEvent.SELECTED) {
                 if (i.getItem().equals(qualificationsArray[0])) {
-                    qualificationsComboBox.setSelectedIndex(0);
                     JOptionPane.showMessageDialog(this, "National Diploma in Information Technology");
                 } else if (i.getItem().equals(qualificationsArray[1])) {
-                    qualificationsComboBox.setSelectedIndex(1);
                     JOptionPane.showMessageDialog(this, "National Certificate in Information Technology");
                 } else if (i.getItem().equals(qualificationsArray[2])) {
-                    qualificationsComboBox.setSelectedIndex(2);
                     JOptionPane.showMessageDialog(this, "National Doctorate in Information Technology");
                 } else {
-                    qualificationsComboBox.setSelectedIndex(3);
                     JOptionPane.showMessageDialog(this, "None");
                 }
             }
@@ -78,31 +143,35 @@ public class StudRegGui extends JFrame {
             String qualification = qualificationsComboBox.getSelectedItem().toString();
             double fee = Double.parseDouble(feeTextField.getText());
 
-            graduates.add(new Graduate(id, surname, 0, qualification, fee)); // adding graduate student to the list
-
+            graduatesDefaultList.add(numberOfStudent++, new Graduate(id, surname, 0, qualification, fee)); // adding graduate student to the list
             // empty the fields
             idTextField.setText("");
             surnameTextField.setText("");
-//            qualificationTextField.setText("");
-            qualificationsComboBox.setSelectedIndex(0);
             feeTextField.setText("");
         });
 
         sortBtn = new JButton("SORT");
-        sortBtn.addActionListener(e ->
-                Collections.sort(graduates)
-        );
+        sortBtn.addActionListener(e -> {
+            ArrayList<Graduate> arrayList = new ArrayList<>();
+
+            for (int i = 0; i < graduatesDefaultList.getSize(); i++) {
+                arrayList.add(graduatesDefaultList.getElementAt(i));
+            }
+
+            Collections.sort(arrayList);
+
+            graduatesDefaultList.clear();
+
+            for (int i = 0; i < arrayList.size(); i++) {
+                graduatesDefaultList.add(i, arrayList.get(i));
+            }
+
+        });
 
 
         displayBtn = new JButton("DISPLAY");
         displayBtn.addActionListener((e -> {
-            String strGraduates = "";
-
-            for (Graduate g : graduates) {
-                strGraduates += String.format("%s\n", g);
-            }
-
-            JOptionPane.showMessageDialog(this, strGraduates);
+            scrollPane.setVisible(true);
         }));
 
         // adding components to the frame
@@ -111,8 +180,22 @@ public class StudRegGui extends JFrame {
         operationsPanel.add(displayBtn);
 
         add(operationsPanel);
+
+        // preparing JList to be displayed
+        graduatesList = new JList(graduatesDefaultList);
+        graduatesList.setVisibleRowCount(4);
+        scrollPane = new JScrollPane(graduatesList);
+
+        add(scrollPane);
+
+        scrollPane.setVisible(false);
+
+
     }
 
+    public static DefaultListModel<Graduate> getGraduatesDefaultList() {
+        return graduatesDefaultList;
+    }
 
     private JPanel createPanel(String legend, JComponent jComponent1, JComponent jComponent2, String strLabel1, String strLabel2) {
         JPanel mainPanel = new JPanel(new GridLayout(1, 2, 3, 1));
@@ -146,8 +229,7 @@ public class StudRegGui extends JFrame {
 
     public void createAndShowFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(540, 300);
+        this.setSize(700, 420);
         this.setVisible(true);
     }
-
 }
